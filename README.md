@@ -1,4 +1,4 @@
-# Flight-application
+# Flights - application
 wpf application
 
 This application builds by using WPF. 

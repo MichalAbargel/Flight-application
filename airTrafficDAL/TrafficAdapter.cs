@@ -25,7 +25,7 @@ namespace airTrafficDAL
         private const string allURL = @"https://data-cloud.flightradar24.com/zones/fcgi/feed.js?faa=1&bounds=41.13,29.993,25.002,36.383&satellite=1&mlat=1&flarm=1&adsb=1&gnd=1&air=1&vehicles=1&estimated=1&maxage=14400&gliders=1&selected=2d1e1f33&ems=1&stats=1";
         private const string flightURL = @"https://data-live.flightradar24.com/clickhandler/?version=1.5&flight=";
         private const string weather = @"https://api.openweathermap.org/data/2.5/weather?q=";
-        private const string APIWeather = @"&mode=json&units=metric&appid=c7a74bbae244c3780acc4de3ba7356d3";
+        private const string APIWeather = @"&mode=json&units=metric&appid=###API_key###";
         private const string calendarAPI = @"https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&year=now&i=on&month=x&geo=geoname&geonameid=3448439&leyning=off&geo=Jerusalem";
         private const string holidaysAPI = @"https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&start=";
         private const string holidaysAPIend = @"&end=";

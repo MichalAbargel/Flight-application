@@ -1,0 +1,71 @@
+﻿<Window x:Class="final_project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:final_project"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" xmlns:UserControls="clr-namespace:final_project.userControls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewModels="clr-namespace:final_project.viewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="768" Width="1366" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="m:Pushpin" x:Key="fromIsrael">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Image Source="C:\Users\Michal Abargel\Desktop\לימודים\שנה ג\סמסטר ב\הנדסת מערכת חלונות\final_project\final_project\Images\airplane.png">
+                        </Image>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="m:Pushpin" x:Key="ToIsrael">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Image Source="C:\Users\Michal Abargel\Desktop\לימודים\שנה ג\סמסטר ב\הנדסת מערכת חלונות\final_project\final_project\Images\toIsrael.png">
+                        </Image>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="m:Pushpin" x:Key="Airport">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Image Source="C:\Users\Michal Abargel\Desktop\לימודים\שנה ג\סמסטר ב\הנדסת מערכת חלונות\final_project\final_project\Images\place.png">
+                        </Image>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid x:Name="gridMap">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="567*"/>
+            <ColumnDefinition Width="566*"/>
+            <ColumnDefinition Width="566*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <m:Map x:Name="myMap" CredentialsProvider="HBQeR9I48JfWW98U1Pdu~asANyHEBrlXx5h_5yzWgvw~AuPTWcx-_MGWt2yvPrrAyUlItM3vj0HXYJMqJKaT9PayMMlFqbTrkaK8CKvH7x_c" 
+               Center="32.000454,34.870743" ZoomLevel="10" Mode="AerialWithLabels" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,0,0,0" >
+        </m:Map>
+        <UserControls:NavigationBar x:Name="NavigationBar" Grid.ColumnSpan="3" Grid.Row="0" Margin="0,0,0,0"/>
+        <UserControls:sighIn x:Name="sighIn" Opacity="0.9" Grid.Column="1" Grid.Row="1"  Visibility="{Binding IsSignIn, Converter={StaticResource BooleanToVisibilityConverter},Mode=TwoWay}"/>
+        <UserControls:flightDetailsUC x:Name="flightDetailsUC" Grid.Row="1" Visibility="{Binding isFlightDetailsUC, Converter={StaticResource BooleanToVisibilityConverter},Mode=TwoWay}" Height="550" Width="350" Margin="40,-25,64.4,43.4"/>
+        <UserControls:logIn x:Name="logIn" Opacity="0.9"  Grid.Column="1" Grid.Row="1" Visibility="{Binding islogIn, Converter={StaticResource BooleanToVisibilityConverter},Mode=TwoWay}" />
+        <UserControls:HistoryUC  x:Name="HistoryUC" Opacity="1" Visibility="{Binding IsHistory, Converter={StaticResource BooleanToVisibilityConverter},Mode=TwoWay}" Grid.Row="1" Grid.ColumnSpan="3" Margin="2,0,2,0.4"/>
+        <materialDesign:Snackbar x:Name="holiday" IsActive="{Binding isHoliday, Mode=TwoWay}" Margin="0,20,0,0" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Top" Width="400" Background="White" Foreground="DarkCyan" Opacity="0.85" >
+            <materialDesign:SnackbarMessage Content="{Binding Holiday}" Foreground="DarkCyan" FontSize="14" FontWeight="Bold" ActionContent="got it" ActionCommand="{Binding  closeMessageCommand}" ActionCommandParameter="{Binding ElementName=holiday}" />
+        </materialDesign:Snackbar>
+        <!-- simplest message -->
+        <materialDesign:Snackbar x:Name="message" IsActive="{Binding messageVisibility, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Background="Gray" Foreground="Cyan" Opacity="0.85" >
+            <materialDesign:SnackbarMessage Content="{Binding sendMessage, Mode=TwoWay}" ActionContent="Close" ActionCommand="{Binding closeMessageCommand}" ActionCommandParameter="{Binding ElementName=message}" />
+        </materialDesign:Snackbar>
+    </Grid>
+</Window>
